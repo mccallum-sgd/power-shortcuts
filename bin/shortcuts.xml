@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<shortcuts>
+	<shortcut>
+		<name>Eclipse Java Neon</name>
+		<path>S:\Program Files\java-neon\eclipse\eclipse.exe</path>
+		<key>e</key>
+	</shortcut>
+	<shortcut>
+		<name>Paint.net</name>
+		<path>C:\Program Files\paint.net\PaintDotNet.exe</path>
+		<key>p</key>
+	</shortcut>asdfasdf
+	<shortcut>
+		<name>GitHub Desktop</name>
+		<path>C:\Users\Sean\AppData\Local\GitHubDesktop\GitHub.exe</path>
+		<key>g</key>
+	</shortcut>
+</shortcuts>
