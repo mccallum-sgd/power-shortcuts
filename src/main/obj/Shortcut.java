@@ -1,29 +1,22 @@
 package main.obj;
 import java.nio.file.Path;
 
-import javax.swing.JMenuItem;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
+import javax.swing.JButton;
 
 import main.Executor;
 
-public class ShortcutItem extends JMenuItem {
+public class Shortcut extends JButton {
 	private String name;
 	private Path path;
 	private char keyChar;
 	
-	public ShortcutItem(String name, Path path, char keyChar) {
+	public Shortcut(String name, Path path, char keyChar) {
 		super(name);
 		this.name = name;
 		this.path = path;
 		this.keyChar = keyChar;
-		addMenuKeyListener(new MenuKeyListener() {
-			@Override
-			public void menuKeyPressed(MenuKeyEvent e) {
-				Executor.run(path);
-			}
-			@Override public void menuKeyTyped(MenuKeyEvent e) {}
-			@Override public void menuKeyReleased(MenuKeyEvent e) {}
+		addActionListener(a -> {
+			Executor.run(path);
 		});
 	}
 	
@@ -33,4 +26,10 @@ public class ShortcutItem extends JMenuItem {
 	public void setPath(Path path) {this.path = path;}
 	public char getKeyChar() {return keyChar;}
 	public void setKeyChar(char keyChar) {this.keyChar = keyChar;}
+	
+	public String toString() {
+		return "Name: " + name + "\n" + 
+				"Path: " + path.toString() + "\n" +  
+				"Key: " + Character.toString(keyChar);
+	}
 }

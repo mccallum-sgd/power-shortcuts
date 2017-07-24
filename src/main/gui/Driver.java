@@ -1,13 +1,13 @@
 package main.gui;
 
-//import com.sun.jna.Native;
-
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -18,7 +18,7 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.keyboard.NativeKeyListener;
 
 import main.Parser;
-import main.obj.ShortcutItem;
+import main.obj.Shortcut;
 
 public class Driver {
 	public static void main (String args[]) {
@@ -31,7 +31,7 @@ public class Driver {
 	private static JFrame frame;
 	private static ShortcutPanel panel;
 	
-	private static void init (String name, List<ShortcutItem> shortcuts) {
+	private static void init (String name, List<Shortcut> shortcuts) {
 		/*CREATE*/
 		frame = new JFrame(name);
 		panel = new ShortcutPanel(shortcuts);
@@ -44,6 +44,7 @@ public class Driver {
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocation(0, Toolkit.getDefaultToolkit().getScreenSize().height-(HEIGHT+2));
 		frame.setVisible(false);
+		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
@@ -52,14 +53,16 @@ public class Driver {
 			}
 		});
 		try {
+			Logger.getLogger(GlobalScreen.class.getPackage().getName()).setLevel(Level.OFF);
 			GlobalScreen.registerNativeHook();
 		}
 		catch (NativeHookException ex) {
 			System.err.println("There was a problem registering the native hook.");
 			System.err.println(ex.getMessage());
 		}
-
+		
 		GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
+		
 	}
 	
 	private void removeTrayIcon () {

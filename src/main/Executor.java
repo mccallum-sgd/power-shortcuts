@@ -8,7 +8,7 @@ public class Executor {
 	public static void run (Path path) {
 		try
 		{
-		    Process p = Runtime.getRuntime().exec("S:/Program Files/Notepad++/notepad++.exe");
+		    Runtime.getRuntime().exec(path.toString());
 		}
 		catch(Exception e)
 		{
