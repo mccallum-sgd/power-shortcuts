@@ -20,12 +20,10 @@ public class Shortcut extends JButton {
 		});
 	}
 	
-	public String getName() {return name;}
-	public void setName(String name) {this.name = name;}
-	public Path getPath() {return path;}
-	public void setPath(Path path) {this.path = path;}
-	public char getKeyChar() {return keyChar;}
-	public void setKeyChar(char keyChar) {this.keyChar = keyChar;}
+	public void keyPress (char keyChar) {
+		if (this.keyChar == keyChar)
+			System.out.println("keyPress:" + keyChar);
+	}
 	
 	public String toString() {
 		return "Name: " + name + "\n" + 
